@@ -155,7 +155,8 @@ export function normalizeSlideSceneBackground<T extends Slide>(slide: T): T {
       return slide;
     }
 
-    const { background: _background, ...rest } = slide;
+    const rest = { ...slide };
+    delete rest.background;
     return rest as T;
   }
 

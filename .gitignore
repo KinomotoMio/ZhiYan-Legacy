@@ -42,6 +42,7 @@ htmlcov/
 *.pptx.tmp
 .codex-run/
 .playwright-cli/
+frontend/zhiyan-slidev-build-debug.*/
 
 # Runtime data (contains DB, uploads, API keys in settings.json)
 data/

@@ -4,7 +4,6 @@ import { ensureCentiDeckRuntimeStyles } from "./styles";
 import { applyCentiDeckTheme } from "./theme";
 import { rewriteViewportUnits } from "./units";
 import type {
-  CentiDeckDeckInput,
   CentiDeckRuntimeMode,
   CentiDeckSlideContext,
   CentiDeckTheme,

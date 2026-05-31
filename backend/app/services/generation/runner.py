@@ -22,7 +22,6 @@ from app.models.generation import EventType, GenerationEvent, GenerationJob, Job
 from app.models.slide import Presentation, Slide, Theme
 from app.services.generation.agentic import (
     AgentBuilder,
-    LiteLLMModelClient,
     Message,
     Tool,
     ToolContext,

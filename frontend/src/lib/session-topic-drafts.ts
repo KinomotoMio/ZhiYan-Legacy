@@ -20,7 +20,8 @@ export function setSessionTopicDraft(
   }
 
   if (topic === "") {
-    const { [sessionId]: _, ...nextDrafts } = drafts;
+    const nextDrafts = { ...drafts };
+    delete nextDrafts[sessionId];
     return nextDrafts;
   }
 
@@ -38,7 +39,8 @@ export function removeSessionTopicDraft(
     return drafts;
   }
 
-  const { [sessionId]: _, ...nextDrafts } = drafts;
+  const nextDrafts = { ...drafts };
+  delete nextDrafts[sessionId];
   return nextDrafts;
 }
 

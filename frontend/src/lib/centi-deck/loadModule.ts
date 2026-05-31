@@ -48,13 +48,13 @@ export async function loadCentiDeckModule(
     const imported = (await import(/* @vite-ignore */ /* webpackIgnore: true */ blobUrl)) as {
       default?: CentiDeckSlideModule;
     };
-    const module = imported?.default;
-    if (!module || typeof module.render !== "function") {
+    const slideModule = imported?.default;
+    if (!slideModule || typeof slideModule.render !== "function") {
       throw new Error(
         `Centi-deck module for slide ${descriptor.slideId} must export default { render() }`
       );
     }
-    return { descriptor, module };
+    return { descriptor, module: slideModule };
   } finally {
     // Revoke immediately — the module is already instantiated.
     URL.revokeObjectURL(blobUrl);

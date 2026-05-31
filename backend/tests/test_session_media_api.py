@@ -4,10 +4,7 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 
 from app.core.config import settings
-from app.main import app
-from app.services.generation.agentic.types import AssistantMessage, ToolCall
 from app.services.sessions.store import SessionStore
-from tests.conftest import FakeModel
 
 
 def _install_temp_session_store(monkeypatch, tmp_path: Path) -> SessionStore:

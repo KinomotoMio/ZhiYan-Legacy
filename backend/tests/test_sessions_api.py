@@ -1,9 +1,8 @@
 import asyncio
 import json
 import sqlite3
-import sys
 from pathlib import Path
-from types import ModuleType, SimpleNamespace
+from types import SimpleNamespace
 
 from fastapi.testclient import TestClient
 import pytest

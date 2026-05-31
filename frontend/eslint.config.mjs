@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated Slidev debug workspaces are useful locally but contain bundled
+    // third-party JS that should not be linted as app source.
+    "zhiyan-slidev-build-debug.*/**",
   ]),
 ]);
 

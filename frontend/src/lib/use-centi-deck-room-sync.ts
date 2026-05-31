@@ -30,11 +30,18 @@ export function useCentiDeckRoomSync({
   originLabel = "unknown",
 }: UseCentiDeckRoomSyncOptions): void {
   const channelRef = useRef<BroadcastChannel | null>(null);
-  const originRef = useRef<string>(`${originLabel}:${Math.random().toString(36).slice(2, 10)}`);
+  const originRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (!sessionId) return;
     if (typeof BroadcastChannel === "undefined") return;
+    if (!originRef.current) {
+      const randomId =
+        typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+          ? crypto.randomUUID()
+          : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+      originRef.current = `${originLabel}:${randomId}`;
+    }
     const channel = new BroadcastChannel(`centi-deck:${sessionId}`);
     channelRef.current = channel;
     const origin = originRef.current;
@@ -54,7 +61,7 @@ export function useCentiDeckRoomSync({
         channelRef.current = null;
       }
     };
-  }, [sessionId, onRemoteSlideIndex]);
+  }, [sessionId, onRemoteSlideIndex, originLabel]);
 
   useEffect(() => {
     const channel = channelRef.current;
@@ -62,8 +69,8 @@ export function useCentiDeckRoomSync({
     const message: CentiDeckRoomMessage = {
       type: "centi-deck:slide",
       slideIndex,
-      origin: originRef.current,
+      origin: originRef.current ?? originLabel,
     };
     channel.postMessage(message);
-  }, [slideIndex]);
+  }, [slideIndex, originLabel]);
 }
