@@ -4,12 +4,11 @@ from pathlib import Path
 
 import pytest
 
-from app.core.config import settings
 from app.services import slidev as slidev_mod
 
 
 def _real_failure_fixture_path() -> Path:
-    return settings.project_root / "data" / "agentic-runs" / "job-eb00b4c9e52c" / "artifacts" / "slides.md"
+    return Path(__file__).parent / "fixtures" / "slidev" / "composition_repair_slides.md"
 
 
 def test_real_slidev_failure_fixture_normalizes_to_five_pages() -> None:
